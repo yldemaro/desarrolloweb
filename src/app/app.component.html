@@ -1,21 +1,67 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container-full">
+
+  <div class="row p-3" style="height: 100vh;">
+
+    <div class="col-xs-12 col-md-2 bg bg-secondary">
+      <h3 class="text-white my-4">Atributos</h3>
+
+      <div class="form-group text-center">
+        <h3 class=" title text-white">Visible {{visible}}</h3>
+
+        <label class="switch">
+          <input id="visible" type="checkbox" ngModel="visible" (change)="Visibles(visible = !visible)">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="form-group text-center">
+        <h4 class=" title text-white">Cantidad de Personas <br> max 7</h4>
+        <input class="form-control" [(ngModel)]="numPersonas" min="0" max="7" type="number" readonly>
+      </div>
+
+
+      <div class="form-group text-center">
+        <h3 class=" title text-white">Peso Máximo <br> 600Kg</h3>
+
+        <input name="ram" type="range" [(ngModel)]="ramMaxValue" min="0" max="600" readonly>
+
+      </div>
+
+      <div class="form-group text-center">
+
+        <h3 class=" title text-white">Posición</h3>
+
+        <div class="row p-2">
+          <div class="col-xs-12 col-md-6">
+            <h4 class=" title text-white">Arriba</h4>
+            <input class="form-control" type="number" min="0" [(ngModel)]="arriba" readonly>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <h4 class=" title text-white">Abajo</h4>
+            <input class="form-control" [(ngModel)]="abajo" min="0" type="number" readonly>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+    </div>
+    <div class="fondo col-xs-12 col-md-10 text-center" style="background: url('assets/img/pared.jpg');">
+      <img *ngIf="visible===1" width="250" height="250" src="assets/img/ascensorabierto.jpg" alt="" id="ascensor">
+      <img *ngIf="visible===0 || mant===0 " width="250" height="250" src="assets/img/ascensorcerrado.jpg" alt="" id="ascensor">
+      <!-- <h3>{{visible}}</h3> -->
+      <h3 *ngIf="visible && mant && ramMaxValue < 600">Peso de personas: {{ramMaxValue}} Kg</h3>
+      <h3 *ngIf="ramMaxValue>600"> {{ramMaxValue}} Kg Muchas personas en el ascensor no puede arrancar</h3>
+      <h3 *ngIf="visible===0 || mant===0">Lo sentimos el ascensor tiene fallas <br> <img src="assets/img/alarma.gif"
+          alt=""></h3>
+    </div>
+
+  </div>
+
+
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
 <router-outlet></router-outlet>
